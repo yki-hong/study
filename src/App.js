@@ -1,31 +1,16 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
+import Expenses from "./components/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+const expenses = [
+  { date: new Date(), price: (Math.random() * 100).toFixed(2), title: "abcd1" },
+  { date: new Date(), price: (Math.random() * 100).toFixed(2), title: "abcd2" },
+  { date: new Date(), price: (Math.random() * 100).toFixed(2), title: "abcd3" },
+  { date: new Date(), price: (Math.random() * 100).toFixed(2), title: "abcd4" },
+];
 function App() {
   return (
     <div>
-      <h2>Let's get started!!</h2>
+      <NewExpense/>
+      <Expenses items={expenses}></Expenses>
     </div>
   );
 }
