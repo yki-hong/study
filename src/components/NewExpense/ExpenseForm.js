@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [enteredTitle, setTitle] = useState("");
   const [enteredPrice, setPrice] = useState("");
   const [enteredDate, setDate] = useState("");
@@ -45,7 +45,12 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
     
-    console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
+    props.onHideFormAction();
+    // console.log(expenseData);
+    setTitle("");
+    setPrice("");
+    setDate("");
   };
 
   return (
@@ -53,7 +58,7 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label>Price</label>
@@ -61,6 +66,7 @@ const ExpenseForm = () => {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredPrice}
             onChange={priceChangeHandler}
           />
         </div>
@@ -68,13 +74,15 @@ const ExpenseForm = () => {
           <label>Date</label>
           <input
             type="date"
-            min="2022-01-01"
+            min="2020-01-01"
             max="2023-12-31"
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={props.onHideFormAction}>Cancle</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
